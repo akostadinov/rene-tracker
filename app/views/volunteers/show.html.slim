@@ -1,5 +1,25 @@
 p#notice
   = notice
+table.table.table-sm.text-xs-left
+  tbody.table-striped.table-hover
+    tr
+      th scope="row" Full Name
+      td= @volunteer.name
+    tr
+      th scope="row" Username
+      td= @volunteer.username
+    tr
+      th scope="row" Country
+      td= @volunteer.country
+    tr
+      th scope="row" City
+      td= @volunteer.city
+    tr
+      th scope="row" Postal code
+      td= @volunteer.postal_code
+    tr
+      th scope="row" Notes
+      td= @volunteer.notes
 = link_to 'Edit', edit_volunteer_path(@volunteer)
-|  | 
+'  |
 = link_to 'Back', volunteers_path

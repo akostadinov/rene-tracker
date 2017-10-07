@@ -1,0 +1,28 @@
+= smart_listing_controls_for(:volunteers, {class: "form-inline text-xs-right"}) do
+  .form-group.filter.input-append
+    = text_field_tag :filter, "", class: "search form-control", placeholder: "Search...", autocomplete: :off
+  button.btn.btn-primary.disabled type="submit"
+    span.glyphicon.glyphicon-search
+
+table.table.table-striped id="volunteers-list"
+  thead
+    tr
+      th.col-md-3= smart_listing.sortable "Full Name", :name
+      th.col-md-3= smart_listing.sortable "Username", :username
+      th.col-md-3= smart_listing.sortable "Country", :country
+      th.col-md-3= smart_listing.sortable "City", :city
+      th.col-md-3= smart_listing.sortable "Postal Code", :postal_code
+      th.col-md-3 Notes
+  tbody
+    - smart_listing.collection.each do |o|
+      / tr.editable.clickable-row data: {id: o.id}
+      tr.clickable-row data-id= o.id
+        = smart_listing.render object: o, partial: "volunteers/volunteer", locals: {object: o}
+    / = smart_listing.item_new colspan: 6, link: new_volunteers_path
+
+/ TODO: implement operations over selected rows
+= javascript_include_tag "selectable-table"
+
+/ Render nice pagination links fitted for Bootstrap 3 by default
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

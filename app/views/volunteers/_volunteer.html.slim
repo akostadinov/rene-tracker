@@ -1,0 +1,9 @@
+td= link_to object.name, object
+td= link_to object.username, object
+td= object.country
+td= object.city
+td= object.postal_code
+td= object.notes
+/ %td= format_datetime object.expires TODO: format iso
+/ td.actions= smart_listing_item_actions [ name: :edit, url: edit_volunteer_path(object)}, {name: :destroy, url: volunteer_path(object), confirmation: "Are you sure you want to delete this volunteer?" ]
+

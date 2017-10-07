@@ -87,6 +87,6 @@ SmartListing.configure do |config|
   }
 
   config.constants :bootstrap_commands, {
-    #:popover_destroy       => "destroy", # Bootstrap 4 requries dipsose instead of destroy
+    :popover_destroy       => "dispose", # Bootstrap 4 requries dispose instead of destroy
   }
 end

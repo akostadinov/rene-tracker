@@ -1,10 +1,19 @@
 class VolunteersController < ApplicationController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
+
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
 
   # GET /volunteers
   # GET /volunteers.json
   def index
-    @volunteers = Volunteer.all
+    if request.format.html? || request.format.js?
+      # TODO: implement `filter` param handling
+
+      @volunteers = smart_listing_create(:volunteers, Volunteer.all, partial: "volunteers/listing", default_sort: {username: "asc"})
+    else
+      @volunteers = Volunteer.all
+    end
   end
 
   # GET /volunteers/1
@@ -69,6 +78,6 @@ class VolunteersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def volunteer_params
-      params.fetch(:volunteer, {})
+      params.fetch(:volunteer, {}).permit(:name, :username, :country, :city, :postal_code, :notes)
     end
 end
