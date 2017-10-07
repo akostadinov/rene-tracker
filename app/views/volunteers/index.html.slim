@@ -1,0 +1,19 @@
+p#notice
+  = notice
+h1
+  | Volunteers
+table
+  thead
+    tr
+      th[colspan="3"]
+  tbody
+    - @volunteers.each do |volunteer|
+      tr
+        td
+          = link_to 'Show', volunteer
+        td
+          = link_to 'Edit', edit_volunteer_path(volunteer)
+        td
+          = link_to 'Destroy', volunteer, method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Volunteer', new_volunteer_path
