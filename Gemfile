@@ -6,6 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 gem 'json'
+gem "smart_listing"
+gem "slim"
+gem "slim-rails"
 
 gem 'mongoid', '~> 6.1.0'
 
