@@ -5,6 +5,7 @@ class Volunteer
   field :username, type: String
   field :country, type: String
   field :city, type: String
+  field :postal_code, type: String
   field :notes, type: String
 
   has_many :reports, dependent: :destroy
@@ -13,4 +14,5 @@ class Volunteer
   validates :username, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w]+\z/ }
   validates :country, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w ]+\z/ }
   validates :city, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w ]+\z/ }
+  validates :postal_code, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w ]+\z/ }
 end
