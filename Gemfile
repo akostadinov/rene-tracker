@@ -9,6 +9,9 @@ gem 'json'
 gem "smart_listing"
 gem "slim"
 gem "slim-rails"
+gem 'bootstrap', '~> 4.0.0.beta'
+gem 'jquery-rails'
+gem "font-awesome-rails"
 
 gem 'mongoid', '~> 6.1.0'
 
