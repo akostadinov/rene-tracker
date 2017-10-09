@@ -1,0 +1,21 @@
+p#notice
+  = notice
+p
+  b
+    | Date:
+  = @report.date
+p
+  b
+    | Rc:
+  = @report.rc
+p
+  b
+    | Ec:
+  = @report.ec
+p
+  b
+    | Rm:
+  = @report.rm
+= link_to 'Edit', edit_volunteers_report_path(@report.volunteers, @report)
+|  | 
+= link_to 'Back', volunteers_reports_path(@report.volunteers)

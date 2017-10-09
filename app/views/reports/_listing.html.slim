@@ -1,0 +1,20 @@
+= smart_listing_controls_for(:reports, {class: "form-inline text-right"}) do
+
+table.table.table-striped id="volunteers-list"
+  thead
+    tr
+      th.col-md-3= smart_listing.sortable "Date", :date
+      th.col-md-3 RC
+      th.col-md-3 EC
+      th.col-md-3 RM
+      th.col-md-3 Comment
+  tbody
+    - smart_listing.collection.each do |o|
+      / tr.editable.clickable-row data: {id: o.id}
+      tr.editable data-id=o.id
+        = smart_listing.render object: o, partial: "reports/report", locals: {object: o}
+    = smart_listing.item_new colspan: 5, link: new_volunteer_report_path(@volunteer)
+
+/ Render nice pagination links fitted for Bootstrap 3 by default
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

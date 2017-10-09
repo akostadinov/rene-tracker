@@ -1,0 +1,11 @@
+<%#
+  it may happen to override existing row in table if it has expired
+  by the create action, that's why existing records with same id
+  should be removed from table before we insert the new row
+%>
+$("tr[data-id='<%= @report.id %>']").remove();
+
+<%= render(:partial => "error") %>
+
+<%= smart_listing_item :report, :create, @report,
+                    @errors && !@errors.empty? ? "locks/form" : "locks/lock" %>

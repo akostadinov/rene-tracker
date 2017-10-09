@@ -1,0 +1,8 @@
+td= link_to object.date, [object.volunteer, object]
+td= object.rc
+td= object.ec
+td= object.rm
+td= object.comment
+/ %td= format_datetime object.expires TODO: format iso
+/ td.actions= smart_listing_item_actions [ name: :edit, url: volunteer_edit_report_path(object)}, {name: :destroy, url: volunteer_path(object), confirmation: "Are you sure you want to delete this volunteer?" ]
+

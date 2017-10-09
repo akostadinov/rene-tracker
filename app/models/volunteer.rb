@@ -15,4 +15,6 @@ class Volunteer
   validates :country, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w ]+\z/ }
   validates :city, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w ]+\z/ }
   validates :postal_code, presence: true, length: { minimum: 3, maximum: 16 }, format: { with: /\A[-\w ]+\z/ }
+
+  # scope :like, -> (filter) { where("namespace like ? OR resource like ? OR owner like ?", "%#{filter}%", "%#{filter}%", "%#{filter}%")}
 end

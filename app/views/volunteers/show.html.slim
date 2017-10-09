@@ -20,6 +20,26 @@ table.table.table-sm.text-xs-left
     tr
       th scope="row" Notes
       td= @volunteer.notes
+    - rc = @reports.sum(:rc)
+    - ec = @reports.sum(:ec)
+    - rm = @reports.sum(:rm)
+    tr
+      th scope="row" RC
+      td= rc
+    tr
+      th scope="row" EC
+      td= ec
+    tr
+      th scope="row" RM
+      td= rm
+    tr
+      th scope="row" Total Terapies
+      td= rc+ec+rm
+
 = link_to 'Edit', edit_volunteer_path(@volunteer)
 '  |
+= link_to 'Delete', @volunteer, method: :delete, data: { confirm: 'Are you sure?' }
+'  |
 = link_to 'Back', volunteers_path
+
+= smart_listing_render(:reports)

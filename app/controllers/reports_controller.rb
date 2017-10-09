@@ -25,7 +25,8 @@ class ReportsController < ApplicationController
     @report = @volunteers.reports.build(report_params)
 
     if @report.save
-      redirect_to([@report.volunteers, @report], notice: 'Report was successfully created.')
+      # redirect_to([@report.volunteer, @report], notice: 'Report was successfully created.')
+      redirect_to(@report.volunteer, notice: 'Report was successfully created.')
     else
       render action: 'new'
     end
@@ -50,7 +51,7 @@ class ReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reports
-      @volunteers = Volunteer.find(params[:volunteers_id])
+      @volunteers = Volunteer.find(params[:volunteer_id])
     end
 
     def set_report
@@ -59,6 +60,6 @@ class ReportsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def report_params
-      params.require(:report).permit(:date, :rc, :ec, :rm)
+      params.require(:report).permit(:date, :rc, :ec, :rm, :comment)
     end
 end

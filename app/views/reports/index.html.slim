@@ -1,0 +1,33 @@
+h1
+  | Listing reports
+table
+  tr
+    th
+      | Date
+    th
+      | Rc
+    th
+      | Ec
+    th
+      | Rm
+    th
+    th
+    th
+  - @reports.each do |report|
+    tr
+      td
+        = report.date
+      td
+        = report.rc
+      td
+        = report.ec
+      td
+        = report.rm
+      td
+        = link_to 'Show', [report.volunteers, report]
+      td
+        = link_to 'Edit', edit_volunteers_report_path(report.volunteers, report)
+      td
+        = link_to 'Destroy', [report.volunteers, report], :confirm => 'Are you sure?', :method => :delete
+br
+= link_to 'New Report', new_volunteers_report_path(params[:volunteers_id])

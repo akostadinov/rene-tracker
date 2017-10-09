@@ -1,7 +1,4 @@
 class VolunteersController < ApplicationController
-  include SmartListing::Helper::ControllerExtensions
-  helper  SmartListing::Helper
-
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
 
   # GET /volunteers
@@ -9,8 +6,10 @@ class VolunteersController < ApplicationController
   def index
     if request.format.html? || request.format.js?
       # TODO: implement `filter` param handling
+      # https://github.com/Sology/smart_listing/issues/34
+      # https://stackoverflow.com/a/35624863/520567
 
-      @volunteers = smart_listing_create(:volunteers, Volunteer.all, partial: "volunteers/listing", default_sort: {username: "asc"})
+      @volunteers = smart_listing_create(:volunteers, Volunteer.all, partial: "volunteers/listing", default_sort: {:username => 1})
     else
       @volunteers = Volunteer.all
     end
@@ -19,6 +18,10 @@ class VolunteersController < ApplicationController
   # GET /volunteers/1
   # GET /volunteers/1.json
   def show
+    if request.format.html? || request.format.js?
+      @reports = @volunteer.reports
+      @reports = smart_listing_create(:reports, @reports, partial: "reports/listing")
+    end
   end
 
   # GET /volunteers/new
